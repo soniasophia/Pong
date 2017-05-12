@@ -72,8 +72,13 @@ export default class Ball {
 
     ) {
      this.vx = -this.vx;
+      }
     }
   }
+
+  goal(paddle) {
+    paddle.score++;
+    this.reset();
   }
 
   render(svg, paddle1, paddle2) {
@@ -90,5 +95,20 @@ export default class Ball {
     circle.setAttributeNS(null, 'cy', this.y);
     
     svg.appendChild(circle);
+
+    // detect goal
+    const rightGoal = this.x + this.radius >= this.boardWidth;
+    const leftGoal = this.x - this.radius <= 0;
+
+    if (rightGoal) {
+      this.goal(paddle1);
+      this.direction = 1;
+      console.log(paddle1.score);
+
+    } else if (leftGoal) {
+      this.goal(paddle2);
+      this.direction = -1;
+      console.log(paddle2.score);
+    }
   }
 }
