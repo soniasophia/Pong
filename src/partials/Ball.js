@@ -39,11 +39,41 @@ export default class Ball {
     }
   }
 
-  render(svg) {
+  paddleCollision(paddle1, paddle2) {
+    // if moving towards the right...
+    if (this.vx > 0) {
+    // check for collision on paddle2
+
+    let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+
+    let [leftX, rightX, topY, bottomY] = paddle;
+
+    if ( 
+      this.x + this.radius >= leftX // the right edge of the ball is >= the left edge of paddle
+      && this.x + this.radius <= rightX // && the right edge of the ball <= right edge of paddle
+      &&  this.y >= topY // && the ball Y is >= the top edge of the paddle
+      && this.y <= bottomY // && the ball is <= the bottom edge of the paddle
+
+    ) {
+      this.vx = -this.vx;
+
+    }
+
+
+
+
+    } else {
+    // else check for collision on paddle1
+    }
+  }
+
+
+  render(svg, paddle1, paddle2) {
     this.x += this.vx;
     this.y += this.vy;
 
     this.wallCollision();
+    this.paddleCollision(paddle1, paddle2);
 
     let circle = document.createElementNS(SVG_NS, 'circle');
     circle.setAttributeNS(null, 'fill', '#ffffff');
