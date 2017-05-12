@@ -51,7 +51,7 @@ export default class Ball {
     if ( 
       this.x + this.radius >= leftX // the right edge of the ball is >= the left edge of paddle
       && this.x + this.radius <= rightX // && the right edge of the ball <= right edge of paddle
-      &&  this.y >= topY // && the ball Y is >= the top edge of the paddle
+      && this.y >= topY // && the ball Y is >= the top edge of the paddle
       && this.y <= bottomY // && the ball is <= the bottom edge of the paddle
 
     ) {
@@ -59,14 +59,22 @@ export default class Ball {
 
     }
 
-
-
-
     } else {
     // else check for collision on paddle1
+    let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+    let [leftX, rightX, topY, bottomY] = paddle;
+    
+    if (
+      this.x - this.radius <= rightX // left edge of ball is <= right edge of the paddle
+      && this.x - this.radius >= leftX // && left edge of ball is >= left edge of the paddle
+      && this.y >= topY // && ball Y >= paddle top
+      && this. y <= bottomY // && ball Y <= paddle bottom
+
+    ) {
+     this.vx = -this.vx;
     }
   }
-
+  }
 
   render(svg, paddle1, paddle2) {
     this.x += this.vx;
