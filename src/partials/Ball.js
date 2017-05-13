@@ -6,15 +6,15 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
-    this.ping = new Audio('public/sounds/pong-04.wav');
+    this.ping = new Audio('public/sounds/pong-03.wav');
 
     // centre ball on board initially
     this.reset();
   }
 
   reset() {
-    this.x = this.boardWidth / 2;
-    this.y = this.boardHeight / 2;
+    this.x = this.boardWidth/2;
+    this.y = this.boardHeight/2;
 
     // generate a random number between -5 and 5, that's not 0
     this.vy = 0;
@@ -79,7 +79,15 @@ export default class Ball {
 
   goal(paddle) {
     paddle.score++;
+    if ((paddle.x > 493) && (paddle.score === 10)) {
+      alert('Right Paddle Wins!')
+      document.location.reload();
+    } else if ((paddle.x < 493) && (paddle.score === 10)) {
+      alert('Left Paddle Wins!')
+      document.location.reload();
+    } else {
     this.reset();
+    }
   }
 
   render(svg, paddle1, paddle2) {
@@ -104,7 +112,7 @@ export default class Ball {
     if (rightGoal) {
       this.goal(paddle1);
       this.direction = 1;
-     
+
     } else if (leftGoal) {
       this.goal(paddle2);
       this.direction = -1;

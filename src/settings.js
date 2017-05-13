@@ -9,7 +9,17 @@ export const KEYS = {
 };
 
 export const SCORE = {
-  distance: 50,
+  distance: 60,
   topDistance: 30,
   size: 30
+}
+
+export const PADDLES = {
+  paddleWidth: 8,
+  paddleHeight: 56,
+  padding: 10
+}
+
+export const BALL = {
+  radius: 8
 }

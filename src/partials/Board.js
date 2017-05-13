@@ -4,9 +4,8 @@ export default class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.fillColor = '#353535';
+    this.fillColor = '#000000';
     this.lineColor = '#ffffff';
-
   }
 
   render(svg) {

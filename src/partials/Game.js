@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS, SCORE } from '../settings';
+import { SVG_NS, KEYS, SCORE, PADDLES, BALL } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -10,25 +10,18 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height;
-		this.paddleWidth = 8;
-		this.paddleHeight = 56;
-		this.padding = 10;
-		this.radius = 8;
 	
 		this.gameElement = document.getElementById(element);
 
 		this.board = new Board(this.width, this.height);
 
-		this.paddle1 = new Paddle(this.height, this.paddleWidth, this.paddleHeight, this.padding, (this.height-this.paddleHeight)/2, KEYS.a, KEYS.z
-		);
+		this.paddle1 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, PADDLES.padding, (this.height-PADDLES.paddleHeight)/2, KEYS.a, KEYS.z);
 
-		this.paddle2 = new Paddle(this.height, this.paddleWidth, this.paddleHeight, (this.width-this.paddleWidth-this.padding), (this.height-this.paddleHeight)/2, KEYS.up, KEYS.down);
+		this.paddle2 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, (this.width-PADDLES.paddleWidth-PADDLES.padding), (this.height-PADDLES.paddleHeight)/2, KEYS.up, KEYS.down);
 
-		this.ball = new Ball(this.radius, this.width, this.height);
+		this.ball = new Ball(BALL.radius, this.width, this.height);
 		
-    // this.width /2 - 50, 30, 30
-    // this.width /2 + 25, 30, 30;
-		this.paddle1score = new Score(this.width/2 - SCORE.distance-10, SCORE.topDistance, SCORE.size);
+		this.paddle1score = new Score(this.width/2 - SCORE.distance-15, SCORE.topDistance, SCORE.size);
 		this.paddle2score = new Score(this.width/2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
 		document.addEventListener('keydown', event => {
