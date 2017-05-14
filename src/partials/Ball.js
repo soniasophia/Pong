@@ -80,10 +80,10 @@ export default class Ball {
   goal(paddle) {
     paddle.score++;
     if ((paddle.x > 493) && (paddle.score === 10)) {
-      alert('Right Paddle Wins!')
+      alert('Right paddle wins!')
       document.location.reload();
     } else if ((paddle.x < 493) && (paddle.score === 10)) {
-      alert('Left Paddle Wins!')
+      alert('Left paddle wins!')
       document.location.reload();
     } else {
     this.reset();
