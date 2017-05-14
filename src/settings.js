@@ -23,3 +23,8 @@ export const PADDLES = {
 export const BALL = {
   radius: 8
 }
+
+export const BOARD = {
+  fillColor: 'black',
+  lineColor: 'white'
+}

@@ -6,7 +6,6 @@ export default class Score {
     this.y = y;
     this.size = size;
   }
-  //...x206 y30 font-family font-size30 fill 0
 
   render(svg, score) {
     let text = document.createElementNS(SVG_NS, 'text');
@@ -14,7 +13,7 @@ export default class Score {
     text.setAttributeNS(null, 'y', this.y);
     text.setAttributeNS(null, 'font-family', 'Silkscreen Web');
     text.setAttributeNS(null, 'font-size', this.size);
-    text.setAttributeNS(null, 'fill', '#ffffff');
+    text.setAttributeNS(null, 'fill', 'white');
     text.textContent = score;
 
     svg.appendChild(text);

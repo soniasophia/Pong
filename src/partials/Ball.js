@@ -28,14 +28,10 @@ export default class Ball {
   }
 
   wallCollision() {
-    const hitLeft = this.x - this.radius <= 0;
-    const hitRight = this.x + this.radius >= this.boardWidth;
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
 
-    if (hitLeft || hitRight) {
-      this.vx = -this.vx;
-    } else if (hitTop || hitBottom) {
+    if (hitTop || hitBottom) {
       this.vy = -this.vy;
     }
   }
@@ -105,7 +101,6 @@ export default class Ball {
     
     svg.appendChild(circle);
 
-    // detect goal
     const rightGoal = this.x + this.radius >= this.boardWidth;
     const leftGoal = this.x - this.radius <= 0;
 
