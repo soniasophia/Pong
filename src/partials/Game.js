@@ -10,22 +10,22 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height;
-	
+
 		this.gameElement = document.getElementById(element);
 
 		this.board = new Board(this.width, this.height);
 
-		this.paddle1 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, PADDLES.padding, (this.height-PADDLES.paddleHeight)/2, KEYS.a, KEYS.z);
+		this.paddle1 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, PADDLES.padding, (this.height - PADDLES.paddleHeight) / 2, KEYS.a, KEYS.z);
 
-		this.paddle2 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, (this.width-PADDLES.paddleWidth-PADDLES.padding), (this.height-PADDLES.paddleHeight)/2, KEYS.up, KEYS.down);
+		this.paddle2 = new Paddle(this.height, PADDLES.paddleWidth, PADDLES.paddleHeight, (this.width - PADDLES.paddleWidth - PADDLES.padding), (this.height - PADDLES.paddleHeight) / 2, KEYS.up, KEYS.down);
 
 		this.ball = new Ball(BALL.radius, this.width, this.height);
-		
-		this.paddle1score = new Score(this.width/2 - SCORE.distance-15, SCORE.topDistance, SCORE.size);
-		this.paddle2score = new Score(this.width/2 + SCORE.distance, SCORE.topDistance, SCORE.size);
+
+		this.paddle1score = new Score(this.width / 2 - SCORE.distance - 15, SCORE.topDistance, SCORE.size);
+		this.paddle2score = new Score(this.width / 2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
 		document.addEventListener('keydown', event => {
-			if(event.key === KEYS.spaceBar) {
+			if (event.key === KEYS.spaceBar) {
 				this.pause = !this.pause;
 			}
 		})

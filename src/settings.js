@@ -1,10 +1,10 @@
 export const SVG_NS = 'http://www.w3.org/2000/svg';
 
 export const KEYS = {
-  a: 'a',       
-  z: 'z',        
-  up: 'ArrowUp',       
-  down: 'ArrowDown',     
+  a: 'a',
+  z: 'z',
+  up: 'ArrowUp',
+  down: 'ArrowDown',
   spaceBar: ' ',
 };
 
@@ -17,7 +17,9 @@ export const SCORE = {
 export const PADDLES = {
   paddleWidth: 8,
   paddleHeight: 56,
-  padding: 10
+  padding: 10,
+  speed: 30,
+  score: 0
 }
 
 export const BALL = {
@@ -27,4 +29,8 @@ export const BALL = {
 export const BOARD = {
   fillColor: 'black',
   lineColor: 'white'
+}
+
+export const AUDIO = {
+  ping: new Audio('public/sounds/pong-03.wav')
 }

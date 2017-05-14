@@ -1,4 +1,4 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, PADDLES } from '../settings';
 
 export default class Paddle {
   constructor(boardHeight, width, height, x, y, up, down) {
@@ -7,17 +7,16 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 30;
     this.score = 0;
 
     document.addEventListener('keydown', event => {
-      switch(event.key) {
+      switch (event.key) {
         case up:
           this.up();
-        break;
+          break;
         case down:
           this.down();
-        break;
+          break;
       }
     });
   }
@@ -31,11 +30,11 @@ export default class Paddle {
   }
 
   up() {
-    this.y = Math.max(0, this.y - this.speed);
+    this.y = Math.max(0, this.y - PADDLES.speed);
   }
 
   down() {
-    this.y = Math.min(this.boardHeight-this.height, this.y + this.speed);
+    this.y = Math.min(this.boardHeight - this.height, this.y + PADDLES.speed);
   }
 
   render(svg) {
@@ -44,8 +43,8 @@ export default class Paddle {
     rect.setAttributeNS(null, 'y', this.y);
     rect.setAttributeNS(null, 'width', this.width);
     rect.setAttributeNS(null, 'height', this.height);
-    rect.setAttributeNS(null, 'fill', '#ffffff');
-    
+    rect.setAttributeNS(null, 'fill', 'white');
+
     svg.appendChild(rect);
   }
 }
