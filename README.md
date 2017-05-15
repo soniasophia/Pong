@@ -1,5 +1,6 @@
 # Pong Game
 
+![Pong](https://github.com/soniasophia/pong/blob/master/pong.png)
 A basic pong game using SVGs.
 
 ## Setup
