@@ -7,7 +7,6 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
 
-    // centre ball on board initially
     this.reset();
   }
 
@@ -15,14 +14,12 @@ export default class Ball {
     this.x = this.boardWidth / 2;
     this.y = this.boardHeight / 2;
 
-    // generate a random number between -5 and 5, that's not 0
     this.vy = 0;
 
     while (this.vy === 0) {
       this.vy = Math.floor(Math.random() * 10 - 5);
     }
 
-    // a number between -5 and 5, based on the vy
     this.vx = this.direction * (6 - Math.abs(this.vy));
   }
 
@@ -36,18 +33,17 @@ export default class Ball {
   }
 
   paddleCollision(paddle1, paddle2) {
-    // if moving towards the right...
+
     if (this.vx > 0) {
-      // check for collision on paddle2
 
       let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
       let [leftX, rightX, topY, bottomY] = paddle;
 
       if (
-        this.x + this.radius >= leftX // the right edge of the ball is >= the left edge of paddle
-        && this.x + this.radius <= rightX // && the right edge of the ball <= right edge of paddle
-        && this.y >= topY // && the ball Y is >= the top edge of the paddle
-        && this.y <= bottomY // && the ball is <= the bottom edge of the paddle
+        this.x + this.radius >= leftX
+        && this.x + this.radius <= rightX
+        && this.y >= topY
+        && this.y <= bottomY
 
       ) {
         this.vx = -this.vx;
@@ -55,15 +51,15 @@ export default class Ball {
       }
 
     } else {
-      // else check for collision on paddle1
+
       let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
       let [leftX, rightX, topY, bottomY] = paddle;
 
       if (
-        this.x - this.radius <= rightX // left edge of ball is <= right edge of the paddle
-        && this.x - this.radius >= leftX // && left edge of ball is >= left edge of the paddle
-        && this.y >= topY // && ball Y >= paddle top
-        && this.y <= bottomY // && ball Y <= paddle bottom
+        this.x - this.radius <= rightX
+        && this.x - this.radius >= leftX
+        && this.y >= topY
+        && this.y <= bottomY
 
       ) {
         this.vx = -this.vx;
@@ -72,17 +68,16 @@ export default class Ball {
     }
   }
 
-
   goal(paddle) {
     paddle.score++;
-    if ((paddle.x > 493) && (paddle.score === 10)) {
-      alert('Right paddle wins!')
-
-      // document.location.reload();
-    } else if ((paddle.x < 493) && (paddle.score === 10)) {
-      alert('Left paddle wins!')
-
-      // document.location.reload();
+    let rightPaddle = (paddle.x > 493)
+    let leftPaddle = (paddle.x < 493)
+    if ((rightPaddle) && (paddle.score === 10)) {
+      alert('Right paddle wins!');
+      document.location.reload();
+    } else if ((leftPaddle) && (paddle.score === 10)) {
+      alert('Left paddle wins!');
+      document.location.reload();
     } else {
       this.reset();
     }
