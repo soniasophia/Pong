@@ -6,6 +6,8 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.endGame = false;
+    this.maxScore = 2;
 
     this.reset();
   }
@@ -70,16 +72,24 @@ export default class Ball {
 
   goal(paddle) {
     paddle.score++;
-    let rightPaddle = (paddle.x > 493)
-    let leftPaddle = (paddle.x < 493)
-    if ((rightPaddle) && (paddle.score === 10)) {
-      alert('Right paddle wins!');
-      document.location.reload();
-    } else if ((leftPaddle) && (paddle.score === 10)) {
-      alert('Left paddle wins!');
-      document.location.reload();
-    } else {
       this.reset();
+      if(paddle.score == this.maxScore) {
+        this.endGame = true;
+      }
+    }
+
+
+  detectGoal(paddle1, paddle2) {
+    const rightGoal = this.x + this.radius >= this.boardWidth;
+    const leftGoal = this.x - this.radius <= 0;
+
+    if (rightGoal) {
+      this.goal(paddle1);
+      this.direction = 1;
+
+    } else if (leftGoal) {
+      this.goal(paddle2);
+      this.direction = -1;
     }
   }
 
@@ -98,16 +108,6 @@ export default class Ball {
 
     svg.appendChild(circle);
 
-    const rightGoal = this.x + this.radius >= this.boardWidth;
-    const leftGoal = this.x - this.radius <= 0;
-
-    if (rightGoal) {
-      this.goal(paddle1);
-      this.direction = 1;
-
-    } else if (leftGoal) {
-      this.goal(paddle2);
-      this.direction = -1;
-    }
+    this.detectGoal(paddle1, paddle2);
   }
 }
