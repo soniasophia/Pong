@@ -78,7 +78,6 @@ export default class Ball {
       }
     }
 
-
   detectGoal(paddle1, paddle2) {
     const rightGoal = this.x + this.radius >= this.boardWidth;
     const leftGoal = this.x - this.radius <= 0;
