@@ -41,6 +41,7 @@ export default class Game {
 
 		if(this.ball.endGame == true){
 			this.endScreen(svg);
+			this.restartGame(this.ball, this.paddle1, this.paddle2);
 			return;
 		}
 		this.gameElement.innerHTML = '';
@@ -82,4 +83,21 @@ export default class Game {
 			this.gameOver.render(svg, 'Paddle 2 Wins!');
 		}
 	}
+
+	restartGame(ball, paddle1, paddle2) {
+		let theBall = ball;
+    let padd1 = paddle1;
+    let padd2 = paddle2;
+		
+    setTimeout(function() {
+      let input = prompt('To restart enter: y');
+      if(input ==  'y') {
+        theBall.endGame = false;
+        padd1.score = 0;
+        padd2.score = 0;
+      }
+    }, 1);
+  }
 }
+
+
