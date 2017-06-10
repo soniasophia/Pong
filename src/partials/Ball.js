@@ -7,7 +7,7 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.endGame = false;
-    this.maxScore = 2;
+    this.maxScore = 10;
 
     this.reset();
   }

@@ -24,7 +24,7 @@ export default class Game {
 		this.paddle1score = new Score(this.width / 2 - SCORE.distance - 15, SCORE.topDistance, SCORE.size);
 		this.paddle2score = new Score(this.width / 2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
-		this.gameOver = new Score(width / 5.5, 125, 40);
+		this.gameOver = new Score(this.width / 5.5, 125, 40);
 
 		document.addEventListener('keydown', event => {
 			if (event.key === KEYS.spaceBar) {
@@ -39,7 +39,7 @@ export default class Game {
 			return;
 		}
 
-		if(this.ball.endGame == true){
+		if(this.ball.endGame == true) {
 			this.endScreen(svg);
 			this.restartGame(this.ball, this.paddle1, this.paddle2);
 			return;
